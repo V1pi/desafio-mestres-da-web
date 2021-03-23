@@ -26,4 +26,42 @@ describe('ProdutosService', () => {
   it('should be defined', () => {
     expect(service).toBeDefined()
   })
+
+  it('should be get produto by id with all information', async () => {
+    const shouldReturn = {
+      id: 3,
+      nome: 'Calça Jeans',
+      valorBase: 100,
+      descricao: 'Calça boa',
+      codigo: 'CAS-MALOK',
+      variacoes: [
+        {
+          id: 1,
+          descricao: 'Tamanho',
+          alternativas: [
+            {
+              id: 2,
+              nome: '46',
+              valor: 40,
+              quantidade: 10,
+              codigo: '46',
+            },
+            {
+              id: 1,
+              nome: '60',
+              valor: 30,
+              quantidade: 5,
+              codigo: '60',
+            },
+          ],
+        },
+      ],
+    } as any
+
+    repo.findOne.mockResolvedValue(shouldReturn as any)
+    await expect(service.getByIdWithAllInformation(3)).resolves.toStrictEqual(
+      shouldReturn,
+    )
+    expect(repo.findOne).toBeCalledWith(3, { relations: ['variacoes'] })
+  })
 })
