@@ -29,7 +29,7 @@ export class Produto extends BaseModel<Produto> implements ProdutoInterface {
 
   @OneToMany((type) => Variacao, (variacoes) => variacoes.produto, {
     cascade: true,
-    eager: true,
+    eager: false,
   })
   variacoes!: Variacao[]
 
