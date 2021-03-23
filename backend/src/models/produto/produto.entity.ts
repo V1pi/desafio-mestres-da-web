@@ -27,7 +27,10 @@ export class Produto extends BaseModel<Produto> implements ProdutoInterface {
   @Column('text', { nullable: false })
   codigo!: string
 
-  @OneToMany((type) => Variacao, (variacoes) => variacoes.produto)
+  @OneToMany((type) => Variacao, (variacoes) => variacoes.produto, {
+    cascade: true,
+    eager: true,
+  })
   variacoes!: Variacao[]
 
   fillFromJson(json: any): Produto {

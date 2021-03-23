@@ -32,7 +32,7 @@ export class Alternativa
   @ManyToOne((type) => Variacao, (variacao) => variacao.alternativas, {
     cascade: false,
   })
-  @JoinColumn({ name: 'id_alternativa' })
+  @JoinColumn({ name: 'id_variacao' })
   variacao!: Variacao
 
   fillFromJson(json: any): Alternativa {

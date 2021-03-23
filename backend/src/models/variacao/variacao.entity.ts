@@ -27,7 +27,10 @@ export class Variacao extends BaseModel<Variacao> implements VariacaoInterface {
   @JoinColumn({ name: 'id_produto' })
   produto!: Produto
 
-  @OneToMany((type) => Alternativa, (alternativas) => alternativas.variacao)
+  @OneToMany((type) => Alternativa, (alternativas) => alternativas.variacao, {
+    cascade: true,
+    eager: true,
+  })
   alternativas!: Alternativa[]
 
   fillFromJson(json: any): Variacao {
