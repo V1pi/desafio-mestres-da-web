@@ -1,5 +1,13 @@
 import { JsonHelper } from '../../common/helpers/json.helper'
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, JoinColumn, OneToMany } from 'typeorm'
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  ManyToOne,
+  JoinColumn,
+  OneToMany,
+} from 'typeorm'
 import { Alternativa } from '../alternativa/alternativa.entity'
 import { BaseModel } from '../basis/base.entity'
 import { Produto } from '../produto/produto.entity'
@@ -13,18 +21,13 @@ export class Variacao extends BaseModel<Variacao> implements VariacaoInterface {
   @Column('text', { nullable: false })
   descricao!: string
 
-  @ManyToOne(
-    type => Produto,
-    produto => produto.variacoes,
-    { cascade: false },
-  )
+  @ManyToOne((type) => Produto, (produto) => produto.variacoes, {
+    cascade: false,
+  })
   @JoinColumn({ name: 'id_produto' })
   produto!: Produto
 
-  @OneToMany(
-    type => Alternativa,
-    alternativas => alternativas.variacao,
-  )
+  @OneToMany((type) => Alternativa, (alternativas) => alternativas.variacao)
   alternativas!: Alternativa[]
 
   fillFromJson(json: any): Variacao {
@@ -44,7 +47,6 @@ export class Variacao extends BaseModel<Variacao> implements VariacaoInterface {
   }
 
   public static fromJson(json: any): Variacao {
-    return new Variacao(
-    ).fillFromJson(json)
+    return new Variacao().fillFromJson(json)
   }
 }

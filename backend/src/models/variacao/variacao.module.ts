@@ -12,4 +12,4 @@ import { Variacao } from './variacao.entity'
   ],
   exports: [TypeOrmModule],
 })
-export class VariacoesEntityModule { }
+export class VariacoesEntityModule {}

@@ -1,11 +1,11 @@
-import { Variacao } from "../variacao/variacao.entity"
-import { Produto } from "./produto.entity"
+import { Variacao } from '../variacao/variacao.entity'
+import { Produto } from './produto.entity'
 
 describe('Produto', () => {
   it('test json produto', () => {
     const mockUsuario = new Produto()
     const mockVariacao = new Variacao()
-    mockVariacao.descricao = "Modelo"
+    mockVariacao.descricao = 'Modelo'
     mockVariacao.alternativas = []
     mockVariacao.id = 1
     mockUsuario.id = 1
@@ -32,8 +32,8 @@ function expectedJSON() {
       {
         descricao: 'Modelo',
         id: 1,
-        alternativas: []
-      }
-    ]
+        alternativas: [],
+      },
+    ],
   }
 }

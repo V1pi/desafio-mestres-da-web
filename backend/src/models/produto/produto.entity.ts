@@ -1,4 +1,10 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, OneToMany } from 'typeorm'
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  OneToMany,
+} from 'typeorm'
 import { BaseModel } from '../basis/base.entity'
 import { Variacao } from '../variacao/variacao.entity'
 import { ProdutoInterface } from './produto.interface'
@@ -21,12 +27,8 @@ export class Produto extends BaseModel<Produto> implements ProdutoInterface {
   @Column('text', { nullable: false })
   codigo!: string
 
-  @OneToMany(
-    type => Variacao,
-    variacoes => variacoes.produto,
-  )
+  @OneToMany((type) => Variacao, (variacoes) => variacoes.produto)
   variacoes!: Variacao[]
-
 
   fillFromJson(json: any): Produto {
     if (!json) {
@@ -45,7 +47,6 @@ export class Produto extends BaseModel<Produto> implements ProdutoInterface {
   }
 
   public static fromJson(json: any): Produto {
-    return new Produto(
-    ).fillFromJson(json)
+    return new Produto().fillFromJson(json)
   }
 }

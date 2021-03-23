@@ -1,6 +1,4 @@
 import { Module } from '@nestjs/common'
-import { AppController } from './app.controller'
-import { AppService } from './app.service'
 import { FirebaseAdminModule } from '@aginix/nestjs-firebase-admin'
 import * as admin from 'firebase-admin'
 import { FIREBASE_CONFIG } from './common/constants/firebase'
@@ -25,7 +23,5 @@ import { PgModelsConfigService } from './config/postgressql/config.service'
     PgModelsConfigModule,
     AppConfigModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
 })
 export class AppModule { }

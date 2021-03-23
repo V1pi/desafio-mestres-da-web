@@ -10,4 +10,4 @@ import { Alternativa } from './alternativa.entity'
   ],
   exports: [TypeOrmModule],
 })
-export class AlternativasEntityModule { }
+export class AlternativasEntityModule {}

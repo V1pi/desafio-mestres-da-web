@@ -1,4 +1,4 @@
-import { Alternativa } from "./alternativa.entity"
+import { Alternativa } from './alternativa.entity'
 
 describe('Alternativa', () => {
   it('test json alternativa', () => {

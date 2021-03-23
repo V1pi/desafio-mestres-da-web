@@ -16,6 +16,6 @@ function expectedJSON() {
   return {
     descricao: 'Modelo',
     id: 1,
-    alternativas: []
+    alternativas: [],
   }
 }

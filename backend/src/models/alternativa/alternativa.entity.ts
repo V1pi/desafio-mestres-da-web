@@ -1,10 +1,19 @@
-import { Entity, PrimaryGeneratedColumn, Column, OneToOne, ManyToOne, JoinColumn } from 'typeorm'
+import {
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  OneToOne,
+  ManyToOne,
+  JoinColumn,
+} from 'typeorm'
 import { BaseModel } from '../basis/base.entity'
 import { Variacao } from '../variacao/variacao.entity'
 import { AlternativaInterface } from './alternativa.interface'
 
 @Entity('alternativa')
-export class Alternativa extends BaseModel<Alternativa> implements AlternativaInterface {
+export class Alternativa
+  extends BaseModel<Alternativa>
+  implements AlternativaInterface {
   @PrimaryGeneratedColumn()
   id!: number
 
@@ -20,14 +29,11 @@ export class Alternativa extends BaseModel<Alternativa> implements AlternativaIn
   @Column('text', { nullable: false })
   codigo!: string
 
-  @ManyToOne(
-    type => Variacao,
-    variacao => variacao.alternativas,
-    { cascade: false },
-  )
+  @ManyToOne((type) => Variacao, (variacao) => variacao.alternativas, {
+    cascade: false,
+  })
   @JoinColumn({ name: 'id_alternativa' })
   variacao!: Variacao
-
 
   fillFromJson(json: any): Alternativa {
     if (!json) {
@@ -45,7 +51,6 @@ export class Alternativa extends BaseModel<Alternativa> implements AlternativaIn
   }
 
   public static fromJson(json: any): Alternativa {
-    return new Alternativa(
-    ).fillFromJson(json)
+    return new Alternativa().fillFromJson(json)
   }
 }

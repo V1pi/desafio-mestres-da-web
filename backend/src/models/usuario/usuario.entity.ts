@@ -16,7 +16,6 @@ export class Usuario extends BaseModel<Usuario> implements UsuarioInterface {
   @Column('text', { nullable: false })
   uid!: string
 
-
   fillFromJson(json: any): Usuario {
     if (!json) {
       return this
@@ -29,7 +28,6 @@ export class Usuario extends BaseModel<Usuario> implements UsuarioInterface {
   }
 
   public static fromJson(json: any): Usuario {
-    return new Usuario(
-    ).fillFromJson(json)
+    return new Usuario().fillFromJson(json)
   }
 }
