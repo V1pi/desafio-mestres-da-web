@@ -12,6 +12,8 @@ lerna-debug.log*
 
 *.sql
 
+*.env
+
 # OS
 .DS_Store
 
