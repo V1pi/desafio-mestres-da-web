@@ -12,7 +12,10 @@ services:
     ports:
       - '5432:5432'
   serv:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: prod
     depends_on:
       - db
     ports:
