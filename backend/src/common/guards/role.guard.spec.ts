@@ -63,7 +63,7 @@ describe('Testing auth middleware', () => {
     mockExecutionContext.switchToHttp.mockReturnValue(mockHttpRequestArgument)
     mockRequestAuth.user = {
       customClaims: {
-        roles: 100,
+        role: 100,
       },
     }
     mockHttpRequestArgument.getRequest.mockReturnValue(mockRequestAuth)
