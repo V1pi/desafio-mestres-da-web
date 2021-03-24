@@ -1,0 +1,16 @@
+.center-content {
+  margin: auto;
+  width: 50%;
+  margin-top: 10px;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.form > .center-text > button {
+  background-color: black;
+  color: white;
+  width: 100px;
+  font-weight: 500;
+}

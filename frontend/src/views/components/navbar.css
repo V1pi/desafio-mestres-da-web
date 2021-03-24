@@ -1,0 +1,12 @@
+.navbar-brand {
+  display: table;
+}
+.navbar-brand > img,
+.navbar-brand > p {
+  vertical-align: middle;
+  display: table-cell;
+}
+
+.navbar-brand > p {
+  padding-left: 20px;
+}

@@ -1,0 +1,40 @@
+.container-product > .product {
+  padding: 10px;
+  box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.product > .info > .row:first-child > p {
+  text-align: center;
+  width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.product > .click {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.container-product > :not(:first-child) {
+  margin-top: 20px;
+}
+
+.button-text {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-text > span > button {
+  color: white;
+  background-color: black;
+}
+
+.button-text > :first-child {
+  line-height: 38px;
+}
