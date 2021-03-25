@@ -20,6 +20,7 @@ export class Home extends Component<Props, HomeProdutoState> {
     p1.valorBase = 200
     p1.descricao = 'Gostava de usar pra sair mas agora nao quero mais'
     p1.codigo = '15415'
+    p1.id = 5
     this.state = {
       produtos: [p1, p1],
     }
@@ -28,7 +29,13 @@ export class Home extends Component<Props, HomeProdutoState> {
   renderProdutos(): JSX.Element {
     const options: JSX.Element[] = this.state.produtos.map((produto, idx) => {
       return (
-        <Row className="product" key={idx}>
+        <Row
+          className="product"
+          key={idx}
+          onClick={() =>
+            this.props.history.push('/produtos/' + produto.id + '/alterar')
+          }
+        >
           <Col className="info col-8">
             <Row>
               <p>
