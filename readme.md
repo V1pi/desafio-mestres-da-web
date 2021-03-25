@@ -18,7 +18,7 @@ docker-compose -f ./docker-compose.yaml down
 ```
 As rotas da aplicação poderão ser testadas tanto pelo insomnia ou postman, quanto pelo frontend.<br> 
 O servidor backend por padrão roda no localhost na posta 2503.<br>
-O servidor frontend por padrão roda no localhost na porta 3000<br>
+O servidor frontend por padrão roda no localhost na porta 5000<br>
 
 ### Rodando os testes
 Para rodar os testes basta executar:
