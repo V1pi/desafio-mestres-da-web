@@ -6,6 +6,7 @@ import { CreateProdutoDto } from './dto/create-produto.dto'
 import { UpdateProdutoDto } from './dto/update-produto.dto'
 import { Roles } from '../../common/decorators/roles.decorator'
 import { TipoUsuario } from '../../common/enums/tipo-usuario.enum'
+import { Produto } from 'src/models/produto/produto.entity'
 
 @Controller('produtos')
 export class ProdutosController {
@@ -47,9 +48,12 @@ export class ProdutosController {
     @Param('id') id: number,
     @Body() newProduto: UpdateProdutoDto,
   ): Promise<ResponseDefault> {
-    const tempProduto = await this.serv.getByID(id)
-    newProduto.id = tempProduto.id
-    const produto = await this.serv.create(newProduto)
+    const oldProduto = await this.serv.getByIdWithAllInformation(id)
+    newProduto.id = oldProduto.id
+    const produto = await this.serv.updateProduto(
+      oldProduto,
+      newProduto as Produto,
+    )
     return {
       error_id: TipoErro.SEM_ERROS,
       message: 'Sucesso!',
