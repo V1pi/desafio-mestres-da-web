@@ -23,7 +23,6 @@ export class CreateProdutoDto {
   @IsOptional()
   descricao: string
   @IsNumber()
-  @IsOptional()
   valorBase: number
   @IsString()
   codigo: string

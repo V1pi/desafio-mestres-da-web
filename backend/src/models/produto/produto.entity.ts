@@ -18,7 +18,7 @@ export class Produto extends BaseModel<Produto> implements ProdutoInterface {
   @Column('text', { nullable: false })
   nome!: string
 
-  @Column('double precision', { nullable: true, name: 'valor_base' })
+  @Column('double precision', { nullable: false, name: 'valor_base' })
   valorBase!: number
 
   @Column('text', { nullable: true })

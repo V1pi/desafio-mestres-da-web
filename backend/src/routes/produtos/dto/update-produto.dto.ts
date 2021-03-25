@@ -32,7 +32,6 @@ export class UpdateProdutoDto {
   @IsOptional()
   descricao: string
   @IsNumber()
-  @IsOptional()
   valorBase: number
   @IsString()
   codigo: string
