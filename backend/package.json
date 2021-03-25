@@ -18,7 +18,7 @@
     "start:prod": "cross-env NODE_ENV=production node dist/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
-    "get:sql": "curl -L https://gist.githubusercontent.com/V1pi/433bc1467c0293b5d65d18b526fec130/raw/004aaf0ccda960a3475c767431ca90ba7ead6d90/sql-mestres-da-web -o init.sql",
+    "get:sql": "curl -L https://gist.githubusercontent.com/V1pi/433bc1467c0293b5d65d18b526fec130/raw/0ee72c60e63b91105f3a09e7d8b668489820148f/sql-mestres-da-web -o init.sql",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
