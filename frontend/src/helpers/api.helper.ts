@@ -32,4 +32,26 @@ export class ApiHelper {
       throw new Error(error.response.data.message)
     }
   }
+
+  async RequestWithoutAuth(
+    endpoint: string,
+    method: axios.Method,
+    data?: any,
+  ): Promise<any> {
+    const configs: axios.AxiosRequestConfig = {
+      data: JSON.stringify(data),
+      url: `${this.url}/${endpoint}`,
+      method: method,
+      headers: {
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+      },
+    }
+    try {
+      const response = await axios.default.request(configs)
+      return response.data
+    } catch (error) {
+      throw new Error(error.response.data.message)
+    }
+  }
 }
