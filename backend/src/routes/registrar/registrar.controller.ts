@@ -1,12 +1,12 @@
 import { FirebaseAuthenticationService } from '@aginix/nestjs-firebase-admin'
-import { Body, Controller, Post } from '@nestjs/common'
+import { Body, Controller, OnModuleDestroy, Post } from '@nestjs/common'
 import { ResponseDefault } from 'src/common/interfaces/response-default.interface'
 import { RegistrarService } from './registrar.service'
 import { CreateAdministradorDto } from './dto/create-administrador.dto'
 import { TipoErro } from '../../common/enums/tipo-erro.enum'
 import { TipoUsuario } from '../../common/enums/tipo-usuario.enum'
 @Controller('registrar')
-export class RegistrarController {
+export class RegistrarController implements OnModuleDestroy {
   constructor(
     private serv: RegistrarService,
     private auth: FirebaseAuthenticationService,
@@ -41,5 +41,14 @@ export class RegistrarController {
       this.auth.deleteUser(user.uid)
       throw error
     }
+  }
+
+  async onModuleDestroy(): Promise<void> {
+    const allUsers = await this.auth.listUsers()
+    const uids: string[] = []
+    for (const user of allUsers.users) {
+      uids.push(user.uid)
+    }
+    await this.auth.deleteUsers(uids)
   }
 }
