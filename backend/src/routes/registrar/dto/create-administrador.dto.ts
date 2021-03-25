@@ -1,6 +1,7 @@
-import { IsOptional, IsString } from 'class-validator'
+import { IsOptional, IsString, Length } from 'class-validator'
 export class CreateAdministradorDto {
   @IsString()
+  @Length(1)
   nome: string
   @IsOptional()
   papel: number
