@@ -10,3 +10,21 @@
 .navbar-brand > p {
   padding-left: 20px;
 }
+
+.signout > a {
+  color: red !important;
+}
+
+.signout {
+  border: 1px solid red;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.signout:hover {
+  background-color: red;
+}
+
+.signout:hover > a {
+  color: white !important;
+}
