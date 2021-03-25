@@ -163,8 +163,10 @@ describe('ProdutosController', () => {
       ],
       id: 1,
     } as any
-    repo.getByID.mockResolvedValue(shouldReturn.data.produto as any)
-    repo.create.mockResolvedValue(shouldReturn.data.produto as any)
+    repo.getByIdWithAllInformation.mockResolvedValue(
+      shouldReturn.data.produto as any,
+    )
+    repo.updateProduto.mockResolvedValue(shouldReturn.data.produto as any)
     await expect(controller.updateProduto(1, dto)).resolves.toStrictEqual(
       shouldReturn,
     )
