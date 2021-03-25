@@ -5,8 +5,8 @@ import { Produto } from '../../models/produto/produto.entity'
 import { Repository } from 'typeorm'
 import { AllException } from '../../common/exceptions/all.exception'
 import { TipoErro } from '../../common/enums/tipo-erro.enum'
-import { Variacao } from 'src/models/variacao/variacao.entity'
-import { Alternativa } from 'src/models/alternativa/alternativa.entity'
+import { Variacao } from '../../models/variacao/variacao.entity'
+import { Alternativa } from '../../models/alternativa/alternativa.entity'
 
 @Injectable()
 export class ProdutosService extends BaseService<Produto> {
