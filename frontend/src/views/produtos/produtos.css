@@ -38,7 +38,7 @@
   margin-bottom: 0;
 }
 
-.button-text > span > button,
+.button-text > span > button:not(.btn-border-black),
 .black-btn {
   color: white;
   background-color: black;

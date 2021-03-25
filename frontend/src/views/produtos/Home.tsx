@@ -17,6 +17,7 @@ type Props = RouteComponentProps<any>
 export class Home extends Component<Props, HomeProdutoState> {
   constructor(props: Props) {
     super(props)
+    this.getAllProdutos = this.getAllProdutos.bind(this)
     this.renderProdutos = this.renderProdutos.bind(this)
     if (!FirebaseHelper.Instance.auth.currentUser) {
       this.props.history.replace('/')
@@ -69,6 +70,14 @@ export class Home extends Component<Props, HomeProdutoState> {
             <span>Seus produtos cadastrados:</span>
             <span>
               <Button
+                onClick={this.getAllProdutos}
+                className="btn-border-black"
+              >
+                Carregar
+              </Button>
+            </span>
+            <span>
+              <Button
                 onClick={() => {
                   this.props.history.push('/produtos/adicionar')
                 }}
@@ -84,10 +93,13 @@ export class Home extends Component<Props, HomeProdutoState> {
     )
   }
 
-  componentDidMount(): void {
+  async getAllProdutos(): Promise<void> {
     const produtoController = new ProdutoController()
-    produtoController.getAllProdutos().then((produtos) => {
-      this.setState({ produtos })
-    })
+    const produtos = await produtoController.getAllProdutos()
+    this.setState({ produtos })
+  }
+
+  componentDidMount(): void {
+    this.getAllProdutos()
   }
 }
