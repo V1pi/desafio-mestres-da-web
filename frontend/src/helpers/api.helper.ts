@@ -1,6 +1,6 @@
 import * as axios from 'axios'
 export class ApiHelper {
-  private url = 'localhost:2503'
+  private url = 'http://localhost:2503'
 
   private static _instance: ApiHelper
 
@@ -16,22 +16,20 @@ export class ApiHelper {
     data?: any,
   ): Promise<any> {
     const configs: axios.AxiosRequestConfig = {
-      auth: {
-        username: token,
-        password: '',
-      },
       data: JSON.stringify(data),
       url: `${this.url}/${endpoint}`,
       method: method,
       headers: {
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        Authorization: 'Bearer ' + token,
       },
     }
-    const response = await axios.default.request(configs)
-    const resJson = JSON.parse(response.data)
-    if (resJson.error) {
-      throw new Error(resJson.message)
+    try {
+      const response = await axios.default.request(configs)
+      return response.data
+    } catch (error) {
+      throw new Error(error.response.data.message)
     }
-    return resJson
   }
 }

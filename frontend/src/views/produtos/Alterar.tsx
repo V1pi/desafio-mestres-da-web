@@ -8,10 +8,15 @@ import { Produto } from '../../models/produto.entity'
 import { Variacao } from '../../models/variacao.entity'
 import { Alternativa } from '../../models/alternativa.entity'
 import { FirebaseHelper } from '../../helpers/firebase.helper'
+import { ProdutoController } from '../../controllers/produto_controller'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import swal from '@sweetalert/with-react'
 
 interface AlterarProdutoState {
   produto: Produto
   variacoes: Variacao[]
+  carregando: boolean
 }
 
 type Props = RouteComponentProps<any>
@@ -25,22 +30,23 @@ export class Alterar extends Component<Props, AlterarProdutoState> {
     this.renderAlternativa = this.renderAlternativa.bind(this)
     this.handleSave = this.handleSave.bind(this)
     this.handleDelete = this.handleDelete.bind(this)
-    /* const p1 = new Produto()
-    p1.nome = 'Camisa extra top'
-    p1.valorBase = 200
-    p1.descricao = 'Gostava de usar pra sair mas agora nao quero mais'
-    p1.codigo = '15415'
-    const alternativa = new Alternativa()
-    alternativa.nome = '44'
-    alternativa.codigo = '44'
-    alternativa.quantidade = 20
-    alternativa.valor = 100
-    const variacao = new Variacao()
-    variacao.descricao = 'Modelo'
-    variacao.alternativas = [alternativa] */
+    this.getProdutoById = this.getProdutoById.bind(this)
     this.state = {
       produto: new Produto(),
       variacoes: [],
+      carregando: true,
+    }
+    this.getProdutoById(this.props.match.params.id)
+  }
+
+  async getProdutoById(id: number): Promise<void> {
+    const produtoController = new ProdutoController()
+    const newProduto = await produtoController.getProdutoById(id)
+    if (newProduto) {
+      this.setState({
+        produto: newProduto,
+        variacoes: newProduto.variacoes ? newProduto.variacoes : [],
+      })
     }
   }
 
@@ -197,11 +203,65 @@ export class Alterar extends Component<Props, AlterarProdutoState> {
   async handleSave(): Promise<void> {
     const produto = this.state.produto
     produto.variacoes = this.state.variacoes
+    const produtoController = new ProdutoController()
+    try {
+      await produtoController.updateProduto(produto)
+      swal({
+        title: 'Sucesso',
+        text: 'Seu produto foi alterado com sucesso',
+        icon: 'success',
+        buttons: {
+          produtos: { text: 'Ver produtos', value: 'produtos' },
+        },
+      }).then((value: string) => {
+        if (value === 'produtos') {
+          this.props.history.replace('/produtos')
+        } else {
+          this.props.history.goBack()
+        }
+      })
+    } catch (error) {
+      swal({
+        title: 'Ops, houve algum problema',
+        text: error.message,
+        icon: 'error',
+        buttons: {
+          cancel: 'Fechar',
+        },
+      })
+    }
   }
 
   async handleDelete(): Promise<void> {
     const produto = this.state.produto
     produto.variacoes = this.state.variacoes
+    const produtoController = new ProdutoController()
+    try {
+      await produtoController.deleteProdutoById(produto.id)
+      swal({
+        title: 'Sucesso',
+        text: 'Seu produto foi deletado com sucesso',
+        icon: 'success',
+        buttons: {
+          produtos: { text: 'Ver produtos', value: 'produtos' },
+        },
+      }).then((value: string) => {
+        if (value === 'produtos') {
+          this.props.history.replace('/produtos')
+        } else {
+          this.props.history.goBack()
+        }
+      })
+    } catch (error) {
+      swal({
+        title: 'Ops, houve algum problema',
+        text: error.message,
+        icon: 'error',
+        buttons: {
+          cancel: 'Fechar',
+        },
+      })
+    }
   }
 
   render(): JSX.Element {

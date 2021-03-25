@@ -6,6 +6,8 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import { RouteComponentProps } from 'react-router'
 import { Produto } from '../../models/produto.entity'
 import { FirebaseHelper } from '../../helpers/firebase.helper'
+import { ApiHelper } from '../../helpers/api.helper'
+import { ProdutoController } from '../../controllers/produto_controller'
 
 interface HomeProdutoState {
   produtos: Produto[]
@@ -19,14 +21,8 @@ export class Home extends Component<Props, HomeProdutoState> {
     if (!FirebaseHelper.Instance.auth.currentUser) {
       this.props.history.replace('/')
     }
-    const p1 = new Produto()
-    p1.nome = 'Camisa extra top'
-    p1.valorBase = 200
-    p1.descricao = 'Gostava de usar pra sair mas agora nao quero mais'
-    p1.codigo = '15415'
-    p1.id = 5
     this.state = {
-      produtos: [p1, p1],
+      produtos: [],
     }
   }
 
@@ -86,5 +82,12 @@ export class Home extends Component<Props, HomeProdutoState> {
         </Container>
       </div>
     )
+  }
+
+  componentDidMount(): void {
+    const produtoController = new ProdutoController()
+    produtoController.getAllProdutos().then((produtos) => {
+      this.setState({ produtos })
+    })
   }
 }

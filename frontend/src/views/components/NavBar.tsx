@@ -10,7 +10,10 @@ export class NavBar extends Component<Props> {
     return (
       <div>
         <Navbar collapseOnSelect bg="light">
-          <Navbar.Brand onClick={() => this.props.history.push('/')}>
+          <Navbar.Brand
+            onClick={() => this.props.history.push('/')}
+            style={{ cursor: 'pointer' }}
+          >
             <img
               src={Dafiti}
               width="75"

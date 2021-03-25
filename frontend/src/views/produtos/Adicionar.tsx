@@ -8,6 +8,10 @@ import { Produto } from '../../models/produto.entity'
 import { Variacao } from '../../models/variacao.entity'
 import { Alternativa } from '../../models/alternativa.entity'
 import { FirebaseHelper } from '../../helpers/firebase.helper'
+import { ProdutoController } from '../../controllers/produto_controller'
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// @ts-ignore
+import swal from '@sweetalert/with-react'
 
 interface AdicionarProdutoState {
   produto: Produto
@@ -24,19 +28,6 @@ export class Adicionar extends Component<Props, AdicionarProdutoState> {
     if (!FirebaseHelper.Instance.auth.currentUser) {
       this.props.history.replace('/')
     }
-    /* const p1 = new Produto()
-    p1.nome = 'Camisa extra top'
-    p1.valorBase = 200
-    p1.descricao = 'Gostava de usar pra sair mas agora nao quero mais'
-    p1.codigo = '15415'
-    const alternativa = new Alternativa()
-    alternativa.nome = '44'
-    alternativa.codigo = '44'
-    alternativa.quantidade = 20
-    alternativa.valor = 100
-    const variacao = new Variacao()
-    variacao.descricao = 'Modelo'
-    variacao.alternativas = [alternativa] */
     this.state = {
       produto: new Produto(),
       variacoes: [],
@@ -196,7 +187,31 @@ export class Adicionar extends Component<Props, AdicionarProdutoState> {
   async handleSave(): Promise<void> {
     const produto = this.state.produto
     produto.variacoes = this.state.variacoes
-    console.log(produto)
+    const produtoController = new ProdutoController()
+    try {
+      await produtoController.addNewProduto(produto)
+      swal({
+        title: 'Sucesso',
+        text: 'Seu produto foi inserido com sucesso',
+        icon: 'success',
+        buttons: {
+          produtos: { text: 'Ver produtos', value: 'produtos' },
+        },
+      }).then((value: string) => {
+        if (value === 'produtos') {
+          this.props.history.replace('/produtos')
+        }
+      })
+    } catch (error) {
+      swal({
+        title: 'Ops, houve algum problema',
+        text: error.message,
+        icon: 'error',
+        buttons: {
+          cancel: 'Fechar',
+        },
+      })
+    }
   }
 
   render(): JSX.Element {
