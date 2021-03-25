@@ -23,6 +23,7 @@ export class Variacao extends BaseModel<Variacao> implements VariacaoInterface {
 
   @ManyToOne((type) => Produto, (produto) => produto.variacoes, {
     cascade: false,
+    nullable: false,
   })
   @JoinColumn({ name: 'id_produto' })
   produto!: Produto
