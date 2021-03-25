@@ -31,6 +31,15 @@ describe('RegistrarController', () => {
     expect(controller).toBeDefined()
   })
 
+  it('should kill all users', async () => {
+    mockFirebaseUser.listUsers.mockResolvedValue({
+      users: [{ uid: '1' }, { uid: '2' }],
+    } as any)
+
+    mockFirebaseUser.deleteUsers.mockReturnThis()
+    await expect(controller.onModuleDestroy())
+  })
+
   it('should create administrador', async () => {
     const shouldReturn = {
       error_id: -1,
