@@ -1,7 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing'
 import { ProdutosService } from './produtos.service'
 import { createMock } from '@golevelup/nestjs-testing'
-import { Repository } from 'typeorm'
+import { Connection, EntityManager, QueryRunner, Repository } from 'typeorm'
 import { Produto } from '../../models/produto/produto.entity'
 import { getRepositoryToken } from '@nestjs/typeorm'
 
@@ -63,5 +63,66 @@ describe('ProdutosService', () => {
       shouldReturn,
     )
     expect(repo.findOne).toBeCalledWith(3, { relations: ['variacoes'] })
+  })
+
+  it('should update pedido', async () => {
+    const shouldReturn = {
+      nome: 'Calça Jeans',
+      descricao: 'Calça boa',
+      valorBase: 100,
+      codigo: 'CAS-MALOK',
+      variacoes: [
+        {
+          descricao: 'Tamanho',
+          alternativas: [
+            {
+              nome: '60',
+              codigo: '60',
+              quantidade: 5,
+              valor: 30,
+              id: 1,
+            },
+            {
+              nome: '46',
+              codigo: '46',
+              quantidade: 10,
+              valor: 40,
+              id: 2,
+            },
+          ],
+          id: 1,
+        },
+      ],
+      id: 1,
+    } as any
+
+    const masterEntityManager = createMock<EntityManager>()
+    const masterConnection = createMock<Connection>()
+    const mockQueryRunner = createMock<QueryRunner>()
+    const mockEntityManager = createMock<EntityManager>()
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    repo.manager = masterEntityManager
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    masterEntityManager.connection = masterConnection
+    masterConnection.createQueryRunner.mockReturnValue(mockQueryRunner)
+
+    mockQueryRunner.connect.mockReturnThis()
+    mockQueryRunner.startTransaction.mockReturnThis()
+    mockQueryRunner.release.mockReturnThis()
+    mockQueryRunner.commitTransaction.mockReturnThis()
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    mockQueryRunner.manager = mockEntityManager
+
+    mockEntityManager.save.mockResolvedValue(shouldReturn as any)
+    mockEntityManager.delete.mockReturnThis()
+
+    await expect(
+      service.updateProduto(shouldReturn, shouldReturn),
+    ).resolves.toStrictEqual(shouldReturn)
   })
 })
