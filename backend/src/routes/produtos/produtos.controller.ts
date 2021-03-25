@@ -6,7 +6,7 @@ import { CreateProdutoDto } from './dto/create-produto.dto'
 import { UpdateProdutoDto } from './dto/update-produto.dto'
 import { Roles } from '../../common/decorators/roles.decorator'
 import { TipoUsuario } from '../../common/enums/tipo-usuario.enum'
-import { Produto } from 'src/models/produto/produto.entity'
+import { Produto } from '../../models/produto/produto.entity'
 
 @Controller('produtos')
 export class ProdutosController {
