@@ -98,3 +98,7 @@
   text-align: center;
   justify-content: space-evenly;
 }
+
+.product > .info > .row {
+  margin-bottom: 5px;
+}
