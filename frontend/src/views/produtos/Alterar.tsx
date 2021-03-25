@@ -7,6 +7,7 @@ import { RouteComponentProps } from 'react-router'
 import { Produto } from '../../models/produto.entity'
 import { Variacao } from '../../models/variacao.entity'
 import { Alternativa } from '../../models/alternativa.entity'
+import { FirebaseHelper } from '../../helpers/firebase.helper'
 
 interface AlterarProdutoState {
   produto: Produto
@@ -17,6 +18,9 @@ type Props = RouteComponentProps<any>
 export class Alterar extends Component<Props, AlterarProdutoState> {
   constructor(props: Props) {
     super(props)
+    if (!FirebaseHelper.Instance.auth.currentUser) {
+      this.props.history.replace('/')
+    }
     this.renderVariacao = this.renderVariacao.bind(this)
     this.renderAlternativa = this.renderAlternativa.bind(this)
     this.handleSave = this.handleSave.bind(this)

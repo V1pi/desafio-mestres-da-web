@@ -5,6 +5,7 @@ import './produtos.css'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { RouteComponentProps } from 'react-router'
 import { Produto } from '../../models/produto.entity'
+import { FirebaseHelper } from '../../helpers/firebase.helper'
 
 interface HomeProdutoState {
   produtos: Produto[]
@@ -15,6 +16,9 @@ export class Home extends Component<Props, HomeProdutoState> {
   constructor(props: Props) {
     super(props)
     this.renderProdutos = this.renderProdutos.bind(this)
+    if (!FirebaseHelper.Instance.auth.currentUser) {
+      this.props.history.replace('/')
+    }
     const p1 = new Produto()
     p1.nome = 'Camisa extra top'
     p1.valorBase = 200
