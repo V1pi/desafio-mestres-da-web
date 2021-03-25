@@ -1,4 +1,5 @@
-.container-product > .product {
+.container-product > .product,
+.container-variacao > .variacao {
   padding: 10px;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.2);
   border-radius: 5px;
@@ -19,7 +20,8 @@
   text-align: center;
 }
 
-.container-product > :not(:first-child) {
+.container-product > :not(:first-child),
+.container-variacao > :not(:first-child) {
   margin-top: 20px;
 }
 
@@ -27,7 +29,13 @@
   margin-top: 20px;
   margin-bottom: 20px;
   display: flex;
+  width: 100%;
   justify-content: space-between;
+  align-items: center;
+}
+
+.button-text > :first-child {
+  margin-bottom: 0;
 }
 
 .button-text > span > button {
@@ -35,6 +43,51 @@
   background-color: black;
 }
 
-.button-text > :first-child {
-  line-height: 38px;
+.btn-border-black {
+  border: 1px solid black;
+  background-color: white;
+  color: black;
+}
+
+.btn-border-black:hover {
+  background-color: black;
+  color: white;
+}
+
+.text-input {
+  display: flex;
+  align-items: center;
+}
+.text-input > .form-group {
+  margin: 0;
+  margin-left: 15px;
+}
+
+.container-variacao > .variacao {
+  cursor: default;
+}
+
+.container-variacao > .variacao > * {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.container-variacao {
+  margin-bottom: 20px;
+}
+
+.delete-btn {
+  border: 1px solid red;
+  color: red;
+  background-color: white;
+}
+
+.delete-btn:hover {
+  border: 1px solid white;
+  color: white;
+  background-color: red;
+}
+
+.form {
+  margin-bottom: 20px;
 }
