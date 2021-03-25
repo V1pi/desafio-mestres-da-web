@@ -170,8 +170,7 @@ describe('ProdutosController', () => {
     await expect(controller.updateProduto(1, dto)).resolves.toStrictEqual(
       shouldReturn,
     )
-    expect(repo.create).toBeCalledWith(dto)
-    expect(repo.getByID).toBeCalledWith(1)
+    expect(repo.getByIdWithAllInformation).toBeCalledWith(1)
   })
 
   it('should be get all produtos', async () => {
