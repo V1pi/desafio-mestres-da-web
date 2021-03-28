@@ -16,7 +16,7 @@ export async function allExceptionsFilter(
     }
   }
   if (res.headersSent) {
-    return next(err, req, res)
+    return next()
   }
   const status =
     err instanceof HttpException
