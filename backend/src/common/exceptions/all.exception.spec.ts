@@ -1,6 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing'
 
-import { AllException } from './all.exception'
+import { AllException } from './http.exception'
 import { TipoErro } from '../enums/tipo-erro.enum'
 import { HttpStatus } from '@nestjs/common'
 jest.mock('../constants/exceptions', () => {

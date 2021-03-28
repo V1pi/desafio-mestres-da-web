@@ -2,7 +2,7 @@ import { Injectable, NestMiddleware } from '@nestjs/common'
 import { Response } from 'express'
 import { RequestAuth } from '../interfaces/request-auth.interface'
 import { FirebaseAuthenticationService } from '@aginix/nestjs-firebase-admin'
-import { AllException } from '../exceptions/all.exception'
+import { AllException } from '../exceptions/http.exception'
 import { TipoErro } from '../enums/tipo-erro.enum'
 
 @Injectable()

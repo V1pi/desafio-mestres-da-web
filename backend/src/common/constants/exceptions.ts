@@ -1,6 +1,6 @@
 import { TipoErroDados } from '../exceptions/interfaces/tipo-erro-dados.interface'
-import { HttpStatus } from '@nestjs/common'
 import { TipoErro } from '../enums/tipo-erro.enum'
+import { HttpStatus } from '../enums/http-status.enum'
 
 export const COMMON_ERRORS: TipoErroDados[] = [
   {

@@ -7,7 +7,7 @@ import {
   UpdateQueryBuilder,
 } from 'typeorm'
 import { getRepositoryToken } from '@nestjs/typeorm'
-import { AllException } from '../exceptions/all.exception'
+import { AllException } from '../exceptions/http.exception'
 import { Provider } from '@nestjs/common'
 import { BaseService } from './base.service'
 import { RegistrarService } from '../../routes/registrar/registrar.service'

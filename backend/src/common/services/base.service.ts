@@ -1,6 +1,6 @@
 import { In, Repository } from 'typeorm'
 import { TipoErro } from '../enums/tipo-erro.enum'
-import { AllException } from '../exceptions/all.exception'
+import { HttpException } from '../exceptions/http.exception'
 import { BaseModel } from '../../models/basis/base.entity'
 import { QueryDeepPartialEntity } from 'typeorm/query-builder/QueryPartialEntity'
 
@@ -11,7 +11,7 @@ export class BaseService<T extends BaseModel<T>> {
     const status = await this.repo.save(obj)
 
     if (!status) {
-      throw new AllException(TipoErro.ERROR_AO_SALVAR)
+      throw new HttpException(TipoErro.ERROR_AO_SALVAR)
     }
 
     return status
@@ -21,7 +21,7 @@ export class BaseService<T extends BaseModel<T>> {
     const status = await this.repo.findOne(id)
 
     if (!status) {
-      throw new AllException(TipoErro.ID_NAO_ENCONTRADO)
+      throw new HttpException(TipoErro.ID_NAO_ENCONTRADO)
     }
     return status
   }
@@ -30,7 +30,7 @@ export class BaseService<T extends BaseModel<T>> {
     const values: Array<T> = await this.repo.find()
 
     if (!values) {
-      throw new AllException(TipoErro.ID_NAO_ENCONTRADO)
+      throw new HttpException(TipoErro.ID_NAO_ENCONTRADO)
     }
 
     return values
@@ -39,7 +39,7 @@ export class BaseService<T extends BaseModel<T>> {
   async update(id: number, obj: QueryDeepPartialEntity<T>): Promise<T> {
     const status = await this.repo.update(id, obj)
     if (!status.affected) {
-      throw new AllException(TipoErro.ERROR_AO_ATUALIZAR)
+      throw new HttpException(TipoErro.ERROR_AO_ATUALIZAR)
     }
     return this.repo.findOneOrFail(id)
   }
@@ -55,7 +55,7 @@ export class BaseService<T extends BaseModel<T>> {
       .execute()
 
     if (!status.affected) {
-      throw new AllException(TipoErro.ERROR_AO_ATUALIZAR)
+      throw new HttpException(TipoErro.ERROR_AO_ATUALIZAR)
     }
   }
 
@@ -63,7 +63,7 @@ export class BaseService<T extends BaseModel<T>> {
     const status = await this.repo.delete(id)
 
     if (status.affected === 0) {
-      throw new AllException(TipoErro.ERROR_AO_DELETAR)
+      throw new HttpException(TipoErro.ERROR_AO_DELETAR)
     }
   }
 }

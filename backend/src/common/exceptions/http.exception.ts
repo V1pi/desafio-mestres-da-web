@@ -1,11 +1,12 @@
-import { HttpException, HttpStatus } from '@nestjs/common'
 import { TipoErro } from '../enums/tipo-erro.enum'
 import { COMMON_ERRORS } from '../constants/exceptions'
 import { TipoErroDados } from './interfaces/tipo-erro-dados.interface'
+import { HttpStatus } from '../enums/http-status.enum'
 
-export class AllException extends HttpException {
+export class HttpException extends Error {
   public tipoErroDado: TipoErroDados
   constructor(errorId: TipoErro, message?: string, httpStatus?: HttpStatus) {
+    super()
     let newTipoErroDado: TipoErroDados =
       message && httpStatus
         ? { errorId: errorId, message, httpStatus }
@@ -29,7 +30,7 @@ export class AllException extends HttpException {
     if (message) {
       newTipoErroDado.message = message
     }
-    super(newTipoErroDado.message, newTipoErroDado.httpStatus)
+
     this.tipoErroDado = newTipoErroDado
   }
 }

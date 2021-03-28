@@ -9,7 +9,7 @@ import { Reflector } from '@nestjs/core'
 import { ExecutionContext } from '@nestjs/common'
 import { RolesGuard } from './roles.guard'
 import { HttpArgumentsHost } from '@nestjs/common/interfaces'
-import { AllException } from '../exceptions/all.exception'
+import { AllException } from '../exceptions/http.exception'
 
 describe('Testing auth middleware', () => {
   let service: RolesGuard

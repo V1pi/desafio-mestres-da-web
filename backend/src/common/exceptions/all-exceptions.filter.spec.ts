@@ -2,7 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing'
 import { HttpStatus } from '@nestjs/common'
 
 import { AllExceptionsFilter } from './all-exceptions.filter'
-import { AllException } from './all.exception'
+import { AllException } from './http.exception'
 
 const mockJson = jest.fn()
 const mockStatus = jest.fn().mockImplementation(() => ({

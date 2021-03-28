@@ -5,7 +5,7 @@ import {
   HttpException,
   HttpStatus,
 } from '@nestjs/common'
-import { AllException } from './all.exception'
+import { AllException } from './http.exception'
 import { TipoErro } from '../enums/tipo-erro.enum'
 
 @Catch()
