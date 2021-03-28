@@ -27,6 +27,7 @@
   "dependencies": {
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
+    "cors": "^2.8.5",
     "cross-env": "^7.0.3",
     "firebase-admin": "^9.5.0",
     "pg": "^8.5.1",
