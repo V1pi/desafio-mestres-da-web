@@ -1,16 +1,5 @@
 import 'reflect-metadata'
-import {
-  HOST_BD,
-  NAME_BD,
-  PASSWORD_BD,
-  PORT_BD,
-  USER_BD,
-} from '../../config/config'
 import { createConnection, Connection, getConnection } from 'typeorm'
-import { Usuario } from '../../models/usuario/usuario.entity'
-import { Alternativa } from '../../models/alternativa/alternativa.entity'
-import { Produto } from '../../models/produto/produto.entity'
-import { Variacao } from '../../models/variacao/variacao.entity'
 export class PostgresDatabase {
   private _connection?: Connection
 
