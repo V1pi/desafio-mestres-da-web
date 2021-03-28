@@ -34,7 +34,7 @@ routes.post(
 )
 
 routes.put(
-  '/produtos/:id/alternar',
+  '/produtos/:id/alterar',
   GuardMiddleware([TipoUsuario.ADMIN]),
   dtoValidationMiddleware(UpdateProdutoDto),
   async (req, res, next) => {
@@ -52,12 +52,21 @@ routes.delete(
   },
 )
 
-routes.delete(
+routes.get(
   '/produtos/:id/info',
   GuardMiddleware([TipoUsuario.ADMIN]),
   async (req, res, next) => {
     const produtoController = new ProdutoController()
     next(produtoController.getById(req, res))
+  },
+)
+
+routes.get(
+  '/produtos',
+  GuardMiddleware([TipoUsuario.ADMIN]),
+  async (req, res, next) => {
+    const produtoController = new ProdutoController()
+    next(produtoController.getAllProdutos(req, res))
   },
 )
 export { routes }

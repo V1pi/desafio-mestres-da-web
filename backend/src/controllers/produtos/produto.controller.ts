@@ -39,6 +39,7 @@ export class ProdutoController {
 
   public async updateProduto(req: Request, res: Response): Promise<Response> {
     const newProduto = Produto.fromJson(req.body)
+
     const oldProduto = await this.repo.getByIdWithAllInformation(
       Number(req.params.id),
     )
