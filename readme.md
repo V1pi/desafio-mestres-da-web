@@ -35,7 +35,7 @@ docker-compose -f ./docker-compose-test.yaml down
 ### Aplicação backend e frontend
 Para instalar localmente será necessário ter o NodeJS instalado, a versão que utilizei para o desenvolvimento foi a v10.16.3. Mas o código é compatível com as novas versões também. A instalação do NodeJS vai depender do sistema operacional e você pode encontrar instruções [aqui](https://nodejs.org/en/download/).<br>
 Também será mecessário ter o PostgresSQL instalado, eu particularmente rodo ele em Docker, mas pode ser encontrado o tutorial para instalação [aqui](https://www.postgresql.org/download/)<br>
-Com o NodeJS e PostgresSQL instalado vamos criar o arquivo development.env na raiz da pasta do backend, o arquivo deve ter o seguinte formato:
+Com o NodeJS e PostgresSQL instalado vamos criar o arquivo .env na raiz da pasta do backend, o arquivo deve ter o seguinte formato:
 ```
 POSTGRES_PASSWORD="beribo"
 POSTGRES_DB="delivery"
@@ -52,16 +52,13 @@ Abra as pastas frontend e backend e execute dentro de cada uma delas:
 ```
 npm install
 ```
-Dentro da pasta backend instale globalmente:
-```
-npm install -g @nestjs/cli
-```
-Agora pronto, abra um terminal cada um dentro de uma pasta e execute:
+Agora pronto, abra um terminal cada um dentro de uma pasta(frontend e backend) e execute:
 ```
 npm run start
 ```
 O servidor backend por padrão roda no localhost na posta 2503.<br>
 O servidor frontend por padrão roda no localhost na porta 3000<br>
+O servidor postgresql por padrão roda no localhost na porta 5432<br>
 
 ### Rodando os testes
 Para rodar os testes basta executar:
