@@ -5,7 +5,7 @@ import {
   PASSWORD_BD,
   PORT_BD,
   USER_BD,
-} from 'src/config/config'
+} from '../../config/config'
 import { createConnection, Connection, getConnection } from 'typeorm'
 import * as path from 'path'
 export class PostgresDatabase {
