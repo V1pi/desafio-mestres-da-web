@@ -3,9 +3,7 @@ import { Request, Response } from 'express'
 import { ResponseDefault } from '../common/interfaces/response-default.interface'
 import { Usuario } from '../models/usuario/usuario.entity'
 import { RegistrarRepository } from '../repositories/registrar.repository'
-import * as admin from 'firebase-admin'
 import { TipoUsuario } from '../common/enums/tipo-usuario.enum'
-import { HttpException } from '../common/exceptions/http.exception'
 
 export class RegistrarController {
   private repo: RegistrarRepository

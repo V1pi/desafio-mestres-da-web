@@ -1,4 +1,6 @@
 import { Router } from 'express'
+import dtoValidationMiddleware from './common/middlewares/dto-validation.middleware'
+import { CreateAdministradorDto } from './controllers/dto/create-administrador.dto'
 import { RegistrarController } from './controllers/registrar.controller'
 
 /**
@@ -7,8 +9,12 @@ import { RegistrarController } from './controllers/registrar.controller'
 const routes = Router()
 
 routes.get('', (req, res) => res.send('Ola'))
-routes.post('/registrar/administrador', async (req, res, next) => {
-  const registrarController = new RegistrarController()
-  next(registrarController.create(req, res))
-})
+routes.post(
+  '/registrar/administrador',
+  dtoValidationMiddleware(CreateAdministradorDto),
+  async (req, res, next) => {
+    const registrarController = new RegistrarController()
+    next(registrarController.create(req, res))
+  },
+)
 export { routes }
