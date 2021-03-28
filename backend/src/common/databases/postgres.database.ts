@@ -7,7 +7,10 @@ import {
   USER_BD,
 } from '../../config/config'
 import { createConnection, Connection, getConnection } from 'typeorm'
-import * as path from 'path'
+import { Usuario } from '../../models/usuario/usuario.entity'
+import { Alternativa } from '../../models/alternativa/alternativa.entity'
+import { Produto } from '../../models/produto/produto.entity'
+import { Variacao } from '../../models/variacao/variacao.entity'
 export class PostgresDatabase {
   private _connection?: Connection
 
@@ -28,18 +31,7 @@ export class PostgresDatabase {
       let attempts = 0
       while (attempts <= 3) {
         try {
-          this._connection = await createConnection({
-            type: 'postgres',
-            host: HOST_BD,
-            port: PORT_BD,
-            username: USER_BD,
-            password: PASSWORD_BD,
-            database: NAME_BD,
-            synchronize: false,
-            entities: [
-              path.join(__dirname, '..', '..', 'models', '**', '*.entity.ts'),
-            ],
-          })
+          this._connection = await createConnection()
           break
         } catch (error) {
           await new Promise((resolve) => setTimeout(resolve, 1000))

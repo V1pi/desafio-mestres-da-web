@@ -76,7 +76,6 @@ export class ProdutosService extends BaseService<Produto> {
       await queryRunner.release()
       return produto
     } catch (err) {
-      console.log(err)
       // since we have errors lets rollback the changes we made
       await queryRunner.rollbackTransaction()
       await queryRunner.release()

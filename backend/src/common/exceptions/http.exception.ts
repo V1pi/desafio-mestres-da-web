@@ -33,4 +33,8 @@ export class HttpException extends Error {
 
     this.tipoErroDado = newTipoErroDado
   }
+
+  getStatus(): number {
+    return this.tipoErroDado.httpStatus
+  }
 }

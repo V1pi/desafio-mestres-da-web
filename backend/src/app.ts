@@ -1,6 +1,7 @@
 import * as express from 'express'
 import * as cors from 'cors'
 import { routes } from './router'
+import { allExceptionsFilter } from './common/exceptions/all-exceptions.filter'
 
 /**
  * Gerencia as configurações do servidor NodeJS.
@@ -20,6 +21,7 @@ export class App {
     this.express = express()
     this.middlewares()
     this.routes()
+    this.express.use(allExceptionsFilter)
   }
 
   /**
