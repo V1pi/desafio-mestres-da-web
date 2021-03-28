@@ -1,9 +1,9 @@
-import { TipoErro } from '../common/enums/tipo-erro.enum'
+import { TipoErro } from '../../common/enums/tipo-erro.enum'
 import { Request, Response } from 'express'
-import { ResponseDefault } from '../common/interfaces/response-default.interface'
-import { Usuario } from '../models/usuario/usuario.entity'
-import { RegistrarRepository } from '../repositories/registrar.repository'
-import { TipoUsuario } from '../common/enums/tipo-usuario.enum'
+import { ResponseDefault } from '../../common/interfaces/response-default.interface'
+import { Usuario } from '../../models/usuario/usuario.entity'
+import { RegistrarRepository } from '../../repositories/registrar/registrar.repository'
+import { TipoUsuario } from '../../common/enums/tipo-usuario.enum'
 import * as admin from 'firebase-admin'
 export class RegistrarController {
   private repo: RegistrarRepository

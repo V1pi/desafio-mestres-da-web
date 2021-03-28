@@ -1,7 +1,7 @@
-import { PostgresDatabase } from '../common/databases/postgres.database'
-import { TipoErro } from '../common/enums/tipo-erro.enum'
-import { HttpException } from '../common/exceptions/http.exception'
-import { Usuario } from '../models/usuario/usuario.entity'
+import { PostgresDatabase } from '../../common/databases/postgres.database'
+import { TipoErro } from '../../common/enums/tipo-erro.enum'
+import { HttpException } from '../../common/exceptions/http.exception'
+import { Usuario } from '../../models/usuario/usuario.entity'
 import { DeepPartial, Repository } from 'typeorm'
 
 export class RegistrarRepository {

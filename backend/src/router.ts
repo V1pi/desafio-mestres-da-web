@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import dtoValidationMiddleware from './common/middlewares/dto-validation.middleware'
-import { CreateAdministradorDto } from './controllers/dto/create-administrador.dto'
-import { RegistrarController } from './controllers/registrar.controller'
+import { CreateAdministradorDto } from './controllers/registrar/dto/create-administrador.dto'
+import { RegistrarController } from './controllers/registrar/registrar.controller'
 
 /**
  * Gerencia as rotas
