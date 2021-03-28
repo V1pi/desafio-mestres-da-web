@@ -7,8 +7,9 @@
   "license": "UNLICENSED",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "cross-env NODE_ENV=production nest build",
-    "build:dev": "cross-env NODE_ENV=development nest build",
+    "copy:package": "cp ./package.json ./dist/ && cp ./package-lock.json ./dist/",
+    "build": "cross-env NODE_ENV=production npx tsc -p ./tsconfig.json",
+    "build:dev": "cross-env NODE_ENV=development npx tsc -p ./tsconfig.json",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "up:postgres": "npm run get:sql && docker-compose -f docker-compose-postgres.yaml up -d",
     "up:postgres:win10": "docker-compose -f docker-compose-postgres.yaml up -d",

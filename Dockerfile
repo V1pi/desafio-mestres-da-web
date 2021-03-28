@@ -12,10 +12,9 @@ FROM backend as test
 CMD [ "npm", "run", "test" ]
 
 FROM backend as prod_backend
-RUN npm install -g @nestjs/cli
 RUN npm run build
 
-CMD ["node", "dist/main"]
+CMD ["node", "dist/index.js"]
 
 FROM base as frontend
 WORKDIR /usr/src/frontend

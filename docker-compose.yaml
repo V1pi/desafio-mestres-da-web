@@ -26,6 +26,7 @@ services:
       POSTGRES_PASSWORD: beribo
       POSTGRES_USER: postgres
       POSTGRES_DB: delivery
+      POSTGRES_PORT: 5432
       PORT: 2503
       HOST: 0.0.0.0
   frontend:

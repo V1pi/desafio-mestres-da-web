@@ -1,5 +1,13 @@
 import 'reflect-metadata'
 import { createConnection, Connection, getConnection } from 'typeorm'
+import {
+  HOST_BD,
+  PASSWORD_BD,
+  NAME_BD,
+  USER_BD,
+  PORT_BD,
+} from '../../config/config'
+import * as path from 'path'
 export class PostgresDatabase {
   private _connection?: Connection
 
@@ -20,7 +28,27 @@ export class PostgresDatabase {
       let attempts = 0
       while (attempts <= 3) {
         try {
-          this._connection = await createConnection()
+          this._connection = await createConnection({
+            type: 'postgres',
+            host: HOST_BD,
+            port: PORT_BD,
+            username: USER_BD,
+            password: PASSWORD_BD,
+            database: NAME_BD,
+            synchronize: false,
+            dropSchema: false,
+            logging: false,
+            entities: [
+              path.join(
+                __dirname,
+                '..',
+                '..',
+                'models',
+                '**',
+                '*.entity{.ts,.js}',
+              ),
+            ],
+          })
           break
         } catch (error) {
           await new Promise((resolve) => setTimeout(resolve, 1000))
