@@ -4,7 +4,7 @@ import { ResponseDefault } from '../../common/interfaces/response-default.interf
 import { ProdutosService } from './produtos.service'
 import { CreateProdutoDto } from './dto/create-produto.dto'
 import { UpdateProdutoDto } from './dto/update-produto.dto'
-import { Roles } from '../../common/decorators/roles.decorator'
+import { Roles } from '../../common/middlewares/guard.middeware'
 import { TipoUsuario } from '../../common/enums/tipo-usuario.enum'
 import { Produto } from '../../models/produto/produto.entity'
 

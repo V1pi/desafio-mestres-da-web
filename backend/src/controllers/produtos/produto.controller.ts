@@ -4,8 +4,6 @@ import { ResponseDefault } from '../../common/interfaces/response-default.interf
 import { Produto } from '../../models/produto/produto.entity'
 import { ProdutoRepository } from '../../repositories/produtos/produto.repository'
 import * as admin from 'firebase-admin'
-import { Role } from 'src/common/decorators/roles.decorator'
-import { TipoUsuario } from 'src/common/enums/tipo-usuario.enum'
 export class ProdutoController {
   private repo: ProdutoRepository
   private auth: admin.auth.Auth
@@ -14,7 +12,6 @@ export class ProdutoController {
     this.repo = new ProdutoRepository()
     this.auth = admin.auth()
   }
-  @Role([TipoUsuario.ADMIN])
   public async new(req: Request, res: Response): Promise<Response> {
     const newProduto = await this.repo.create(Produto.fromJson(req.body))
     return res.status(201).json({
@@ -26,7 +23,6 @@ export class ProdutoController {
       },
     } as ResponseDefault)
   }
-  @Role([TipoUsuario.ADMIN])
   public async getById(req: Request, res: Response): Promise<Response> {
     const produto = await this.repo.getByIdWithAllInformation(
       Number(req.params.id),
@@ -41,7 +37,6 @@ export class ProdutoController {
     } as ResponseDefault)
   }
 
-  @Role([TipoUsuario.ADMIN])
   public async updateProduto(req: Request, res: Response): Promise<Response> {
     const newProduto = Produto.fromJson(req.body)
     const oldProduto = await this.repo.getByIdWithAllInformation(
@@ -62,7 +57,6 @@ export class ProdutoController {
     } as ResponseDefault)
   }
 
-  @Role([TipoUsuario.ADMIN])
   public async deleteProduto(req: Request, res: Response): Promise<Response> {
     await this.repo.delete(Number(req.params.id))
     return res.status(200).json({
@@ -73,7 +67,6 @@ export class ProdutoController {
     } as ResponseDefault)
   }
 
-  @Role([TipoUsuario.ADMIN])
   public async getAllProdutos(req: Request, res: Response): Promise<Response> {
     const produtos = await this.repo.getAll()
     return res.status(200).json({
