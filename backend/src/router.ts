@@ -2,11 +2,11 @@ import { Router } from 'express'
 import { TipoUsuario } from './common/enums/tipo-usuario.enum'
 import dtoValidationMiddleware from './common/middlewares/dto-validation.middleware'
 import { GuardMiddleware } from './common/middlewares/guard.middeware'
+import { CreateProdutoDto } from './controllers/produtos/dto/create-produto.dto'
+import { UpdateProdutoDto } from './controllers/produtos/dto/update-produto.dto'
 import { ProdutoController } from './controllers/produtos/produto.controller'
 import { CreateAdministradorDto } from './controllers/registrar/dto/create-administrador.dto'
 import { RegistrarController } from './controllers/registrar/registrar.controller'
-import { CreateProdutoDto } from './routes/produtos/dto/create-produto.dto'
-import { UpdateProdutoDto } from './routes/produtos/dto/update-produto.dto'
 
 /**
  * Gerencia as rotas
