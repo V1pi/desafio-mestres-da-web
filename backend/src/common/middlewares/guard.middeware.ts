@@ -6,13 +6,12 @@ import { HttpException } from '../exceptions/http.exception'
  *  está na whitelist de determinada requisição
  * 0: papéis de administradores
  */
-export function GuardMiddleware(whiteList: number[]): RequestHandler {
+export function guardMiddleware(whiteList: number[]): RequestHandler {
   return async (req: Request, res: Response, next: NextFunction) => {
-    if (req.headers.authorization) {
+    if (req && req.headers && req.headers.authorization) {
       const authToken = req.headers.authorization.substring(7)
       try {
         const decodeId = await admin.auth().verifyIdToken(authToken)
-
         const auth = await admin.auth().getUser(decodeId.uid)
         if (
           auth.customClaims !== undefined &&
