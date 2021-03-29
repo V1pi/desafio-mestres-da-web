@@ -3,14 +3,11 @@ import { Request, Response } from 'express'
 import { ResponseDefault } from '../../common/interfaces/response-default.interface'
 import { Produto } from '../../models/produto/produto.entity'
 import { ProdutoRepository } from '../../repositories/produtos/produto.repository'
-import * as admin from 'firebase-admin'
 export class ProdutoController {
   private repo: ProdutoRepository
-  private auth: admin.auth.Auth
 
   constructor() {
     this.repo = new ProdutoRepository()
-    this.auth = admin.auth()
   }
   public async new(req: Request, res: Response): Promise<Response> {
     const newProduto = await this.repo.create(Produto.fromJson(req.body))
