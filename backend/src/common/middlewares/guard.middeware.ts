@@ -1,4 +1,4 @@
-import { Request, RequestHandler, Response } from 'express'
+import { NextFunction, Request, RequestHandler, Response } from 'express'
 import * as admin from 'firebase-admin'
 import { TipoErro } from '../enums/tipo-erro.enum'
 import { HttpException } from '../exceptions/http.exception'
@@ -7,7 +7,7 @@ import { HttpException } from '../exceptions/http.exception'
  * 0: papéis de administradores
  */
 export function GuardMiddleware(whiteList: number[]): RequestHandler {
-  return async (req: Request, res: Response, next: any) => {
+  return async (req: Request, res: Response, next: NextFunction) => {
     if (req.headers.authorization) {
       const authToken = req.headers.authorization.substring(7)
       try {

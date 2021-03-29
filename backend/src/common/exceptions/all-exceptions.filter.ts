@@ -1,12 +1,12 @@
 import { HttpException } from './http.exception'
 import { TipoErro } from '../enums/tipo-erro.enum'
-import { Request, Response } from 'express'
+import { NextFunction, Request, Response } from 'express'
 import { HttpStatus } from '../enums/http-status.enum'
 export async function allExceptionsFilter(
   err,
   req: Request,
   res: Response,
-  next,
+  next: NextFunction,
 ) {
   if (err instanceof Promise) {
     try {
