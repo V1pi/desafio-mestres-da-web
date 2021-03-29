@@ -8,13 +8,6 @@ export async function allExceptionsFilter(
   res: Response,
   next: NextFunction,
 ) {
-  if (err instanceof Promise) {
-    try {
-      err = await err
-    } catch (error) {
-      err = error
-    }
-  }
   if (res.headersSent) {
     return next()
   }
