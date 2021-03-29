@@ -1,7 +1,7 @@
 import { Router } from 'express'
 import { TipoUsuario } from './common/enums/tipo-usuario.enum'
 import dtoValidationMiddleware from './common/middlewares/dto-validation.middleware'
-import { GuardMiddleware } from './common/middlewares/guard.middeware'
+import { guardMiddleware } from './common/middlewares/guard.middeware'
 import { CreateProdutoDto } from './controllers/produtos/dto/create-produto.dto'
 import { UpdateProdutoDto } from './controllers/produtos/dto/update-produto.dto'
 import { ProdutoController } from './controllers/produtos/produto.controller'
@@ -29,7 +29,7 @@ routes.post(
 
 routes.post(
   '/produtos/novo',
-  GuardMiddleware([TipoUsuario.ADMIN]),
+  guardMiddleware([TipoUsuario.ADMIN]),
   dtoValidationMiddleware(CreateProdutoDto),
   async (req, res, next) => {
     try {
@@ -43,7 +43,7 @@ routes.post(
 
 routes.put(
   '/produtos/:id/alterar',
-  GuardMiddleware([TipoUsuario.ADMIN]),
+  guardMiddleware([TipoUsuario.ADMIN]),
   dtoValidationMiddleware(UpdateProdutoDto),
   async (req, res, next) => {
     try {
@@ -57,7 +57,7 @@ routes.put(
 
 routes.delete(
   '/produtos/:id',
-  GuardMiddleware([TipoUsuario.ADMIN]),
+  guardMiddleware([TipoUsuario.ADMIN]),
   async (req, res, next) => {
     try {
       const produtoController = new ProdutoController()
@@ -70,7 +70,7 @@ routes.delete(
 
 routes.get(
   '/produtos/:id/info',
-  GuardMiddleware([TipoUsuario.ADMIN]),
+  guardMiddleware([TipoUsuario.ADMIN]),
   async (req, res, next) => {
     try {
       const produtoController = new ProdutoController()
@@ -83,7 +83,7 @@ routes.get(
 
 routes.get(
   '/produtos',
-  GuardMiddleware([TipoUsuario.ADMIN]),
+  guardMiddleware([TipoUsuario.ADMIN]),
   async (req, res, next) => {
     try {
       const produtoController = new ProdutoController()
