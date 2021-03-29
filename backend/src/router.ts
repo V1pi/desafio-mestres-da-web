@@ -19,7 +19,11 @@ routes.post(
   dtoValidationMiddleware(CreateAdministradorDto),
   async (req, res, next) => {
     const registrarController = new RegistrarController()
-    next(registrarController.create(req, res))
+    try {
+      await registrarController.create(req, res)
+    } catch (error) {
+      next(error)
+    }
   },
 )
 
@@ -28,8 +32,12 @@ routes.post(
   GuardMiddleware([TipoUsuario.ADMIN]),
   dtoValidationMiddleware(CreateProdutoDto),
   async (req, res, next) => {
-    const produtoController = new ProdutoController()
-    next(produtoController.new(req, res))
+    try {
+      const produtoController = new ProdutoController()
+      await produtoController.new(req, res)
+    } catch (error) {
+      next(error)
+    }
   },
 )
 
@@ -38,8 +46,12 @@ routes.put(
   GuardMiddleware([TipoUsuario.ADMIN]),
   dtoValidationMiddleware(UpdateProdutoDto),
   async (req, res, next) => {
-    const produtoController = new ProdutoController()
-    next(produtoController.updateProduto(req, res))
+    try {
+      const produtoController = new ProdutoController()
+      await produtoController.updateProduto(req, res)
+    } catch (error) {
+      next(error)
+    }
   },
 )
 
@@ -47,8 +59,12 @@ routes.delete(
   '/produtos/:id',
   GuardMiddleware([TipoUsuario.ADMIN]),
   async (req, res, next) => {
-    const produtoController = new ProdutoController()
-    next(produtoController.deleteProduto(req, res))
+    try {
+      const produtoController = new ProdutoController()
+      await produtoController.deleteProduto(req, res)
+    } catch (error) {
+      next(error)
+    }
   },
 )
 
@@ -56,8 +72,12 @@ routes.get(
   '/produtos/:id/info',
   GuardMiddleware([TipoUsuario.ADMIN]),
   async (req, res, next) => {
-    const produtoController = new ProdutoController()
-    next(produtoController.getById(req, res))
+    try {
+      const produtoController = new ProdutoController()
+      await produtoController.getById(req, res)
+    } catch (error) {
+      next(error)
+    }
   },
 )
 
@@ -65,8 +85,12 @@ routes.get(
   '/produtos',
   GuardMiddleware([TipoUsuario.ADMIN]),
   async (req, res, next) => {
-    const produtoController = new ProdutoController()
-    next(produtoController.getAllProdutos(req, res))
+    try {
+      const produtoController = new ProdutoController()
+      await produtoController.getAllProdutos(req, res)
+    } catch (error) {
+      next(error)
+    }
   },
 )
 export { routes }
