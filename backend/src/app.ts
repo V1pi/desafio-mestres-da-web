@@ -21,7 +21,7 @@ export class App {
     this.express = express()
     this.middlewares()
     this.routes()
-    this.express.use(allExceptionsFilter)
+    this.express.use(allExceptionsFilter())
   }
 
   /**
