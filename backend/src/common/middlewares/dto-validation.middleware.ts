@@ -8,8 +8,9 @@ import { TipoErro } from '../enums/tipo-erro.enum'
 
 function dtoValidationMiddleware(type: any): RequestHandler {
   return async (req: Request, res: Response, next: NextFunction) => {
-    const dto = plainToClass(type, req.body)
     try {
+      const dto = plainToClass(type, req.body)
+
       const errors: ValidationError[] = await validate(dto)
       if (errors.length > 0) {
         const dtoErrors = errors
