@@ -2,7 +2,6 @@ jest.mock('../../repositories/registrar/registrar.repository')
 import { RegistrarController } from './registrar.controller'
 import * as admin from 'firebase-admin'
 import { Request, Response } from 'express'
-import { TipoUsuario } from '../../common/enums/tipo-usuario.enum'
 describe('Registrar controller', () => {
   let mockRequest: Partial<Request>
   let mockResponse: Partial<Response>
